@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>URL Input Form</title>
+</head>
+<body>
+	<h1>Enter URLs and Text:</h1>
+	<form>
+		<table>
+			<tr>
+				<th>URL</th>
+				<th>Link Text</th>
+			</tr>
+			<tr>
+				<td><input type="text" id="url1"></td>
+				<td><input type="text" id="text1"></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="url2"></td>
+				<td><input type="text" id="text2"></td>
+			</tr>
+			<!-- add more rows as needed -->
+		</table>
+		<br>
+		<input type="button" value="Submit" onclick="convertUrls()">
+	</form>
+	<script>
+		function convertUrls() {
+			var urls = [];
+			var texts = [];
+			for (var i = 1; i <= 2; i++) { // change 2 to the number of rows in the table
+				var url = document.getElementById("url" + i).value.trim();
+				if (url !== "") {
+					urls.push(url);
+				}
+				var text = document.getElementById("text" + i).value.trim();
+				if (text !== "") {
+					texts.push(text);
+				}
+			}
+			var links = "";
+			for (var i = 0; i < urls.length; i++) {
+				links += "<a href='" + urls[i] + "'>" + texts[i] + "</a><br>";
+			}
+			localStorage.setItem("links", links);
+			window.location.href = "display_links.html";
+		}
+	</script>
+</body>
+</html>

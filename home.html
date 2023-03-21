@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <style>
+        body{ background-color: lightblue;}
+        h1 {text-align: center;}
+        h2 {text-align: center;}
+        h3 {text-align: right;}
+        form {text-align: center;}
+        a{
+
+display: block;
+
+line-height: 80px;
+
+}
+        img {text-align: center;
+                width: 100px;
+                height: 100px;
+            }
+        table {
+        width: 400px;
+        margin: 0 auto;
+
+}
+               
+               </style>
+               <meta charset="windows-1252">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <img src="images/logo.png" alt="MeetMe">
+               <h1>MeetMe</h1>
+               <form>
+                <a href="Home.html">Home</a><b>&nbsp
+                <a href="Resource.html">Resource Hub</a><b>&nbsp<br>
+                <a href="account.html">Account</a><b>&nbsp<br>
+                </form>
+                <h2>Home</h2>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>MeetMe</title>
+                    <link rel="stylesheet" href="style.css">
+                </head>
+                <form>
+                <table>
+                    <tr>
+                        <th>URL</th>
+                        <th>Link Text</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url1"></td>
+                        <td><input type="text" id="text1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url2"></td>
+                        <td><input type="text" id="text2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url3"></td>
+                        <td><input type="text" id="text3"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url4"></td>
+                        <td><input type="text" id="text4"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url5"></td>
+                        <td><input type="text" id="text5"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url6"></td>
+                        <td><input type="text" id="text6"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url7"></td>
+                        <td><input type="text" id="text7"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url8"></td>
+                        <td><input type="text" id="text8"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url9"></td>
+                        <td><input type="text" id="text9"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="url10"></td>
+                        <td><input type="text" id="text10"></td>
+                    </tr>
+                    <!-- add more rows as needed -->
+                </table>
+                <br>
+		        <input type="button" value="Submit" onclick="convertUrls()">
+            </form>
+               
+
+                 <form>
+                   <P>CHANGE COLOR OF PAGE</P>
+                   <button type="button" onclick="red()">RED</button>
+                   <button type="button" onclick="blue()">BLUE</button>
+                   <button type="button" onclick="green()">GREEN</button>
+                   <button type="button" onclick="orange()">ORANGE</button>
+                   <button type="button" onclick="yellow()">YELLOW</button>
+                   <button type="button" onclick="purple()">PURPLE</button><br><br>
+                   <button type="button" onclick="lightblue()">RESET</button>
+                   
+
+                </form>
+
+                
+    <script>
+
+        function convertUrls() {
+        var urls = [];
+        var texts = [];
+        for (var i = 1; i <= 10; i++) { // change 2 to the number of rows in the table
+            var url = document.getElementById("url" + i).value.trim();
+            if (url !== "") {
+                urls.push(url);
+            }
+            var text = document.getElementById("text" + i).value.trim();
+            if (text !== "") {
+                texts.push(text);
+            }
+        }
+        var links = "";
+        for (var i = 0; i < urls.length; i++) {
+            links += "<a href='" + urls[i] + "'>" + texts[i] + "</a><br><br>";
+        }
+        localStorage.setItem("links", links);
+        window.location.href = "display_links.html";
+        }
+
+        function red() {
+            document.body.style.backgroundColor = "red";
+            }
+            function blue() {
+            document.body.style.backgroundColor = "blue";
+            }
+            function green() {
+            document.body.style.backgroundColor = "green";
+            }
+            function orange() {
+            document.body.style.backgroundColor = "orange";
+            }
+            function yellow() {
+            document.body.style.backgroundColor = "yellow";
+            }
+            function purple() {
+            document.body.style.backgroundColor = "purple";
+            }
+            function lightblue() {
+            document.body.style.backgroundColor = "lightblue";
+            }
+           
+
+        let links = [];
+                   
+                   const addLink = (ev)=>{
+                       ev.preventDefault();  
+                       let link = {
+
+                           website: document.getElementById('website').value,
+                           url: document.getElementById('url').value
+                       }
+                       links.push(link);
+                       document.querySelector('form').reset();
+           
+                       
+                       
+                       let pre = document.querySelector('#msg pre');
+                       pre.textContent = '\n' + JSON.stringify(links, '\t', 2);
+           
+                       
+                       localStorage.setItem('linkList', JSON.stringify(links) );
+                   }
+                   document.addEventListener('DOMContentLoaded', ()=>{
+                       document.getElementById('btn').addEventListener('click', addLink);
+                   });
+
+
+            
+    </script>
+    
+
+</body>
+</html>
